@@ -29,4 +29,4 @@ Route::post("/login", [HomeController::class, "login"])
 Route::get("/logout", [HomeController::class, "logout"])
     ->name("logout");
 
-Route::resource("/job");
+Route::resource("/job", JobsController::class)->only(["create", "store"]);

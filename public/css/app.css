@@ -6,13 +6,18 @@
     font-family: 'Noto Sans JP', sans-serif;
 }
 
-input, button {
+input, button, textarea {
     outline: none;
     border: .1rem solid transparent;
 }
 
 input:focus {
     border-color: #1f76f9 !important;
+}
+
+textarea {
+    max-width: 100%;
+    min-width: 100%;
 }
 
 hr {
@@ -25,7 +30,7 @@ hr {
     --light-blue: #1f76f9;
 }
 
-/* HEADER */
+/* HEADER.BLADE */
 
 header {
     display: flex;
@@ -76,7 +81,7 @@ header .btns button:hover {
     cursor: pointer;
 }
 
-/* MAIN PAGE */
+/* MAIN.BLADE */
 
 #main {
     display: flex;
@@ -114,7 +119,7 @@ header .btns button:hover {
     align-items: center;
 }
 
-.apply-btn {
+.apply-btn, .create-form__submit {
     padding: .5rem .7rem;
     margin-left: 1rem;
 
@@ -123,7 +128,7 @@ header .btns button:hover {
     border-radius: .25rem;
 }
 
-.apply-btn:hover {
+.apply-btn:hover, .create-form__submit:hover {
     cursor: pointer;
 
     color: white;
@@ -174,7 +179,7 @@ header .btns button:hover {
     box-shadow: 0px 0px 17px -8px rgba(0,0,0,0.63); 
 }
 
-.session-form input {
+.session-form input, .create-form input, textarea {
     padding: .3rem .5rem;
     height: 2.6rem;
 
@@ -247,4 +252,66 @@ header .btns button:hover {
 
 .register-exit:hover, .login-exit:hover {
     cursor: pointer;
+}
+
+/* CREATE.BLADE */
+
+.create-container {
+    padding-top: 2rem;
+
+    display: flex;
+    justify-content: center;
+}
+
+.create-form {
+    width: 30rem;
+    padding: 1rem;
+}
+
+.create-form textarea {
+    height: 10rem;
+}
+
+.create-form__bottom {
+    display: flex;
+}
+
+.minsalary-container {
+    width: 50%;
+    padding-right: .3rem;
+}
+
+.maxsalary-container {
+    padding-left: .3rem;
+    width: 50%;
+}
+
+.create-form__checkbox {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.create-form__checkbox > div {
+    display: flex;
+    align-items: center;
+}
+
+.create-form__checkbox > div label {
+    margin-right: .4rem;
+}
+
+.create-form__submit {
+    padding: .4rem;
+}
+
+@media(max-width: 524px) {
+    .create-form__bottom {
+        flex-direction: column;
+    }
+
+    .minsalary-container, .maxsalary-container {
+        width: unset;
+        padding: unset;
+    }
 }

@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+// Models
+use App\Models\Job;
+
 class JobsController extends Controller
 {
     /**
@@ -23,7 +26,7 @@ class JobsController extends Controller
      */
     public function create()
     {
-        //
+        return view("pages.jobs.create");
     }
 
     /**
@@ -34,7 +37,23 @@ class JobsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            "title" => "required|min:5|max:30",
+            "description" => "required|min:10|max:300",
+            "minsalary" => "required|integer",
+            "maxsalary" => "required|integer"
+        ]);
+
+        $user = new Job();
+        $user->title = $request->input("title");
+        $user->description = $request->input("description");
+        $user->fulltime = $request->has("fulltime") ? $request->input("fulltime") : 0;
+        $user->minimun_salary = $request->input("minsalary");
+        $user->maximun_salary = $request->input("maxsalary");
+        $user->applied_users = '';
+        $user->save();
+
+        return redirect()->route("index");
     }
 
     /**
