@@ -26,7 +26,10 @@ class JobsController extends Controller
      */
     public function create()
     {
-        return view("pages.jobs.create");
+        if(!session("id"))
+            return redirect(404);
+        else
+            return view("pages.jobs.create");
     }
 
     /**

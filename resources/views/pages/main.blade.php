@@ -6,18 +6,21 @@
 
 <main id="main">
     <div class="jobs-container">
-        @for($i = 0; $i < 10; $i++)
+        @foreach($jobs as $job)
             <div class="job">
-                <h3 class="job__title">Job Title</h3>
-                <p class="job__salary">Fulltime 50k</p>
+                <h3 class="job__title">{{ $job->title }}</h3>
+                <p class="job__salary">
+                    @if($job->fulltime)
+                    Fulltime  
+                    @endif
+                   ${{ $job->minimun_salary }}k - ${{ $job->maximun_salary }}k
+                </p>
                 <div class="job__description">
-                    <p>
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum cum, possimus numquam dolores odio nesciunt quos explicabo obcaecati asperiores non adipisci in soluta, quas tenetur repellat? Earum ea distinctio modi.
-                    </p>
+                    <p>{{ $job->description }}</p>
                     <button class="apply-btn">Apply</button>
                 </div>
             </div>
-        @endfor
+        @endforeach
     </div>
 </main>
 

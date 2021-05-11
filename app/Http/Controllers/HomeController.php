@@ -6,15 +6,18 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 //Models
+use App\Models\User;
+use App\Models\Job;
 
 use Illuminate\Support\Facades\Hash;
-use App\Models\User;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        return view('pages.main');
+        $jobs = Job::orderBy("created_at", "DESC")->get();
+
+        return view("pages.main", ["jobs", "jobs" => $jobs]);
     }
 
     public function login(Request $request)

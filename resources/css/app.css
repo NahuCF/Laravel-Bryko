@@ -11,7 +11,7 @@ input, button, textarea {
     border: .1rem solid transparent;
 }
 
-input:focus {
+input:focus, textarea:focus {
     border-color: #1f76f9 !important;
 }
 
@@ -117,6 +117,7 @@ header .btns button:hover {
 .job__description {
     display: flex;
     align-items: center;
+    justify-content: space-between;
 }
 
 .apply-btn, .create-form__submit {
