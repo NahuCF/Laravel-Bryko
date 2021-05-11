@@ -19,7 +19,20 @@ class HomeController extends Controller
 
     public function login(Request $request)
     {
-        dd($request);
+        $user = User::where(["username" => $request->input("username-login")])->first();
+
+        if(!empty($user))
+        {
+            if(Hash::check($request->input("password-login"), $user->password))
+            {
+                session([
+                    "id" => $user->id,
+                    "username" => $user->username
+                ]);
+            }
+        }
+
+        return redirect()->route("index");
     }
 
     public function register(Request $request)
@@ -39,6 +52,13 @@ class HomeController extends Controller
         $user->save();
 
         $request->session()->flash("registered", "Successful registration, now you can Login");
+
+        return redirect()->route("index");
+    }
+    
+    public function logout()
+    {
+        session()->flush();
 
         return redirect()->route("index");
     }

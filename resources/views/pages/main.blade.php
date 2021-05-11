@@ -101,12 +101,12 @@
 
         <div class="input">
             <label for="username-login">Username</label>
-            <input id="username-login" name="username" type="text" placeholder="Username">
+            <input id="username-login" name="username-login" type="text" placeholder="Username">
         </div>
 
         <div class="input">
             <label for="password-login">Password</label>
-            <input id="password-login" name="password" type="password" placeholder="Password">
+            <input id="password-login" name="password-login" type="password" placeholder="Password">
         </div>
 
         <button class="submit-btn" type="submit">Submit</button>

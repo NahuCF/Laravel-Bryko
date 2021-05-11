@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 // Controllers
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\JobsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,3 +25,8 @@ Route::post("/register", [HomeController::class, "register"])
 
 Route::post("/login", [HomeController::class, "login"])
     ->name("login");
+
+Route::get("/logout", [HomeController::class, "logout"])
+    ->name("logout");
+
+Route::resource("/job");
