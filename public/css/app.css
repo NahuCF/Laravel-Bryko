@@ -15,10 +15,6 @@ input:focus, textarea:focus {
     border-color: #1f76f9 !important;
 }
 
-button {
-    font-size: 1rem;
-}
-
 textarea {
     max-width: 100%;
     min-width: 100%;
@@ -134,7 +130,7 @@ header .btns button:hover {
 }
 
 .apply-btn, .create-form__submit {
-    padding: .5rem .7rem;
+    padding: .3rem .7rem;
     margin-left: 1rem;
 
     border: .1rem solid var(--light-blue);
@@ -327,6 +323,16 @@ header .btns button:hover {
 
 /* INDEX.BLADE */
 
+#jobs-title {
+    padding-bottom: 1rem;
+
+    text-align: center;
+}
+
+.jobs-container--little-margin {
+    padding-top: 0;
+}
+
 .arrows-container {
     position: relative;
 }
@@ -388,6 +394,10 @@ header .btns button:hover {
 @media(min-width: 2400px) {
     html {
         font-size: 25px;
+    }
+
+    button {
+        font-size: .8rem;
     }
 }
 

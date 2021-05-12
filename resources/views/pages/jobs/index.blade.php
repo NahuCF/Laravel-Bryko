@@ -4,10 +4,11 @@
 
 @section("content")
 <main id="main">
-    <div class="jobs-container">
+    <div class="jobs-container jobs-container--little-margin">
         @if(!count($jobsData))
             You will see the jobs that you posted here but... Create one first :)
         @else
+            <h2 id="jobs-title">Your posted Jobs</h2>
             @for($i = 0; $i < count($jobsData); $i++)
                 <div class="job">
                     <h3 class="job__title">{{ $jobsData[$i]["title"] }}</h3>
