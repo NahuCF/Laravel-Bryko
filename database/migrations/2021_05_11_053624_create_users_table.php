@@ -19,6 +19,7 @@ class CreateUsersTable extends Migration
             $table->string("email", 30);
             $table->string("password", 100);
             $table->binary("cv");
+            $table->string("extension", 30);
             $table->timestamps();
         });
     }

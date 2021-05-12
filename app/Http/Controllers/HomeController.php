@@ -11,6 +11,7 @@ use App\Models\Job;
 
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use Response;
 
 class HomeController extends Controller
 {
@@ -52,7 +53,8 @@ class HomeController extends Controller
         $user->username = $request->input("username");
         $user->email = $request->input("email");
         $user->password = Hash::make($request->input("password"));
-        $user->cv = $request->file("cv");
+        $user->cv = file_get_contents($request->file("cv"));
+        $user->extension = $request->file("cv")->getClientOriginalExtension();
         $user->save();
 
         $request->session()->flash("registered", "Successful registration, now you can Log In");
@@ -112,13 +114,24 @@ class HomeController extends Controller
     public function dowload(Request $request)
     {
         // Firt check if I am the owner of that job
-        $job = Job::select(["job_owner", "applied_users"])->where(["id" => $request->job_id])->get();
-        // $apllied_users = json_decode($k);
-        // Check if in that job there is the user id
-        // This means that I can access this file
-        
-        // $cv = User::select("cv")->where(["id" => $id])->get();
-        // $pathToFile = storage_path("app/Kernel.php");
-        // return response()->dowload(public_path($pathToFile));
+        $job = Job::select(["job_owner", "applied_users_ids"])->where(["id" => $request->job_id])->get()->toArray()[0];
+
+        $decode_usernames = json_decode($job["applied_users_ids"], true);
+
+        // So that a stranger can download the cv he has 
+        // to know the id of the owner of the job
+        // and the id of the owner of the cv.
+
+        if($job["job_owner"] == session("id") && in_array($job["job_owner"], $decode_usernames)) // It is my job and there is the user
+        {
+            $cv = User::where("id", $request->user_id)->get()->toArray()[0];
+
+            header("Content-Disposition: attachment; filename=" . $cv["username"] . "." .$cv["extension"]); 
+            echo $cv["cv"];
+        }
+        else
+        {
+            return abort(404);
+        }
     }
 }

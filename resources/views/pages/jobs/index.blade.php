@@ -39,13 +39,17 @@
                             @endphp
                             
                             @for($x = 0; $x < count($decodeNames); $x++)
-                                <form class="applicant-form" action="">
+
+                                <form class="applicant-form" action="{{ route("dowload") }}" method="POST">
                                     @csrf
                                     <div class="aplicant-form__content">
                                         {{ $decodeNames[$x] }}
-                                        <a href="#"><i class="fas fa-file-download"></i></a>
+                                        <button id="btn-cv-dowload" type="submit"><i class="fas fa-file-download"></i></button>
                                     </div>
+                                    <input name="user_id" type="text" value="{{ json_decode($jobsData[$i]["applied_users_ids"])[$x] }}" hidden>
+                                    <input name="job_id" type="text" value="{{ $jobsData[$i]["id"] }}" hidden>
                                 </form>
+
                             @endfor
                             @else
                                 Nobody applied :(

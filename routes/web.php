@@ -32,7 +32,7 @@ Route::get("/logout", [HomeController::class, "logout"])
 Route::post("/apply", [HomeController::class, "apply"])
     ->name("apply");
 
-Route::get("/dowload", [HomeController::class, "dowload"])
+Route::post("/dowload", [HomeController::class, "dowload"])
     ->name("dowload");
 
 

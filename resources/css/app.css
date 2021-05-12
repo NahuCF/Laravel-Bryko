@@ -20,6 +20,10 @@ textarea {
     min-width: 100%;
 }
 
+button:hover {
+    cursor: pointer;
+}
+
 hr {
     border: 0;
     border-top: .1rem solid #eee;
@@ -375,6 +379,7 @@ header .btns button:hover {
 
 .fa-file-download {
     color: #7979f2;
+    font-size: 1rem;
 }
 
 .aplicant-form__content {
@@ -389,6 +394,10 @@ header .btns button:hover {
 .applicant-form {
     display: inline-block;
     margin: .1rem;
+}
+
+#btn-cv-dowload {
+    background-color: transparent;
 }
 
 @media(min-width: 2400px) {
