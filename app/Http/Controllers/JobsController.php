@@ -16,7 +16,16 @@ class JobsController extends Controller
      */
     public function index()
     {
-        //
+        if(session("id"))
+        {
+            $jobsData = Job::orderBy("created_at", "DESC")->where("job_owner", session("id"))->get()->toArray();
+
+            return view("pages.jobs.index", ["jobsData" => $jobsData]);
+        }
+        else
+        {
+            return abort(404);
+        }
     }
 
     /**
@@ -27,7 +36,7 @@ class JobsController extends Controller
     public function create()
     {
         if(!session("id"))
-            return redirect(404);
+            return abort(404);
         else
             return view("pages.jobs.create");
     }
@@ -40,23 +49,32 @@ class JobsController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            "title" => "required|min:5|max:30",
-            "description" => "required|min:10|max:300",
-            "minsalary" => "required|integer",
-            "maxsalary" => "required|integer"
-        ]);
-
-        $user = new Job();
-        $user->title = $request->input("title");
-        $user->description = $request->input("description");
-        $user->fulltime = $request->has("fulltime") ? $request->input("fulltime") : 0;
-        $user->minimun_salary = $request->input("minsalary");
-        $user->maximun_salary = $request->input("maxsalary");
-        $user->applied_users = '';
-        $user->save();
-
-        return redirect()->route("index");
+        if(session("id"))
+        {
+            $request->validate([
+                "title" => "required|min:5|max:30",
+                "description" => "required|min:10|max:300",
+                "minsalary" => "required|integer",
+                "maxsalary" => "required|integer"
+            ]);
+    
+            $job = new Job();
+            $job->title = $request->input("title");
+            $job->description = $request->input("description");
+            $job->fulltime = $request->has("fulltime") ? $request->input("fulltime") : 0;
+            $job->minimun_salary = $request->input("minsalary");
+            $job->maximun_salary = $request->input("maxsalary");
+            $job->applied_users_ids = '';
+            $job->applied_users_names = '';
+            $job->job_owner = session("id");
+            $job->save();
+    
+            return redirect()->route("index");
+        }
+        else 
+        {
+            return abort(404);
+        }
     }
 
     /**

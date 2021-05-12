@@ -29,4 +29,11 @@ Route::post("/login", [HomeController::class, "login"])
 Route::get("/logout", [HomeController::class, "logout"])
     ->name("logout");
 
-Route::resource("/job", JobsController::class)->only(["create", "store"]);
+Route::post("/apply", [HomeController::class, "apply"])
+    ->name("apply");
+
+Route::get("/dowload", [HomeController::class, "dowload"])
+    ->name("dowload");
+
+
+Route::resource("/job", JobsController::class)->only(["create", "store", "index"]);

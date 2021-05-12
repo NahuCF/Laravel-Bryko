@@ -1,6 +1,6 @@
 @extends("layout.app")
 
-@section("title", "Main page")
+@section("title", "Create Job")
 
 @section("content")
 <body>
@@ -51,7 +51,7 @@
                     <label for="fulltime">Fulltime</label>
                     <input id="fulltime" type="checkbox" name="fulltime" value=1>
                 </div>
-                <button class="create-form__submit" type="submit">Post Job</button>
+                <button class="create-form__submit" type="submit">Create Job</button>
             </div>
         </form>
     </div>

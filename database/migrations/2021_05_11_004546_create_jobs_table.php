@@ -20,7 +20,9 @@ class CreateJobsTable extends Migration
             $table->boolean("fulltime");
             $table->integer("minimun_salary");
             $table->integer("maximun_salary");
-            $table->text("applied_users");
+            $table->text("applied_users_ids");
+            $table->text("applied_users_names");
+            $table->integer("job_owner");
             $table->timestamps();
         });
     }

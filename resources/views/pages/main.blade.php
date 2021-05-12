@@ -6,21 +6,43 @@
 
 <main id="main">
     <div class="jobs-container">
-        @foreach($jobs as $job)
-            <div class="job">
-                <h3 class="job__title">{{ $job->title }}</h3>
-                <p class="job__salary">
-                    @if($job->fulltime)
-                    Fulltime  
-                    @endif
-                   ${{ $job->minimun_salary }}k - ${{ $job->maximun_salary }}k
-                </p>
-                <div class="job__description">
-                    <p>{{ $job->description }}</p>
-                    <button class="apply-btn">Apply</button>
+        @if(!count($jobs))
+            There is no jobs yet...
+        @else
+            @foreach($jobs as $job)
+                <div class="job">
+                    <h3 class="job__title">{{ $job->title }}</h3>
+                    <p class="job__salary">
+                        @if($job->fulltime)
+                        Fulltime  
+                        @else
+                        Partime
+                        @endif
+                    ${{ $job->minimun_salary }}k - ${{ $job->maximun_salary }}k
+                    </p>
+                    <div class="job__description">
+                        <p>{{ $job->description }}</p>
+
+                        <form action="{{ route("apply") }}" method="POST">
+                            @csrf
+
+                            @if(!empty($job->applied_users_ids))
+                                @if(in_array(session("id"), json_decode($job->applied_users_ids, true)))
+                                    <button class="apply-btn apply-btn--disable" style="pointer-events: none">Apply</button>
+                                @else
+                                <button class="apply-btn">Apply</button>
+                                @endif
+                            @else
+                                <button class="apply-btn">Apply</button>
+                            @endif
+
+                            <input type="text" name="id" value="{{ $job->id }}" hidden>
+                        </form>
+
+                    </div>
                 </div>
-            </div>
-        @endforeach
+            @endforeach
+        @endif
     </div>
 </main>
 

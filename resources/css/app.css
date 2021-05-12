@@ -15,6 +15,10 @@ input:focus, textarea:focus {
     border-color: #1f76f9 !important;
 }
 
+button {
+    font-size: 1rem;
+}
+
 textarea {
     max-width: 100%;
     min-width: 100%;
@@ -24,6 +28,10 @@ hr {
     border: 0;
     border-top: .1rem solid #eee;
     margin-bottom: 1rem;
+}
+
+p {
+    word-break: break-all;
 }
 
 :root {
@@ -53,6 +61,11 @@ header .btns button {
 header .btns button:hover {
     cursor: pointer;
     text-decoration: underline;
+}
+
+.btns {
+    display: flex;
+    text-align: center;
 }
 
 .registered-message {
@@ -92,15 +105,15 @@ header .btns button:hover {
 
 .jobs-container {
     padding: 1rem;
-
-    max-width: 60rem;
+    
+    width: 50rem;
 }
 
 .job {
     padding: 1rem;
     margin-bottom: 1.5rem;
 
-    border: 1px solid #d9dce7;
+    border: .1rem solid #d9dce7;
     border-radius: .25rem;
 }
 
@@ -124,7 +137,7 @@ header .btns button:hover {
     padding: .5rem .7rem;
     margin-left: 1rem;
 
-    border: 1px solid var(--light-blue);
+    border: .1rem solid var(--light-blue);
     background-color: white;
     border-radius: .25rem;
 }
@@ -145,6 +158,12 @@ header .btns button:hover {
 .apply-btn--applied:hover {
     background-color: rgb(255 81 81);
     pointer-events: none;
+}
+
+.apply-btn--disable {
+    background-color: #fc7474;
+    border-color: red;
+    color: white;
 }
 
 .container-register, .container-login {
@@ -186,7 +205,7 @@ header .btns button:hover {
 
     border-radius: .2rem;
 
-    border: 1px solid rgb(209, 209, 213);
+    border: .1rem solid rgb(209, 209, 213);
     background-color: rgb(246, 246, 250);
 
     font-size: 1rem;
@@ -306,6 +325,72 @@ header .btns button:hover {
     padding: .4rem;
 }
 
+/* INDEX.BLADE */
+
+.arrows-container {
+    position: relative;
+}
+
+.left-comment {
+    margin-left: 1rem;
+}
+
+.fa-chevron-down:hover {
+    cursor: pointer;
+}
+
+.fa-chevron-down, .fa-chevron-up {
+    cursor: pointer;
+    transform: scale(1.5);
+    display: none !important;
+
+    position: absolute;
+    right: .1rem;
+    bottom: .1rem;
+}
+
+.arrow-active {
+    display: inline-block !important;
+}
+
+.applicants {
+    margin-top: 1rem;
+    display: none;
+    border-top: .1rem solid #ddd;
+}
+
+.inside-aplicants {
+    margin-top: .5rem;
+}
+
+.applicants--visible {
+    display: block;
+}
+
+.fa-file-download {
+    color: #7979f2;
+}
+
+.aplicant-form__content {
+    padding: .3rem;
+
+    display: inline-block;
+
+    border: .1rem solid #d9dce7;
+    border-radius: .25rem;
+}
+
+.applicant-form {
+    display: inline-block;
+    margin: .1rem;
+}
+
+@media(min-width: 2400px) {
+    html {
+        font-size: 25px;
+    }
+}
+
 @media(max-width: 524px) {
     .create-form__bottom {
         flex-direction: column;
@@ -314,5 +399,15 @@ header .btns button:hover {
     .minsalary-container, .maxsalary-container {
         width: unset;
         padding: unset;
+    }
+}
+
+@media(max-width: 340px) {
+    .btns, .btns > div {
+        flex-direction: column;
+    }
+
+    .btns > div a{
+        display: block;
     }
 }
